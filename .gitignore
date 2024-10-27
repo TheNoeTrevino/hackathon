@@ -2,4 +2,4 @@ backend/main/main/__pycache__/
 backend/env
 .DS_Store
 frontend/.vite/
-
+.DS_Store
