@@ -125,6 +125,7 @@ const AccPieChart = () => {
       <Card
         variant="outlined"
         sx={{
+          borderColor: "white",
           display: "flex",
           flexDirection: "column",
           gap: "8px",
