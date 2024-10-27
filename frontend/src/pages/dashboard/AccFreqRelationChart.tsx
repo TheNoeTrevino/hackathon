@@ -32,7 +32,7 @@ function getDaysInMonth(month: number, year: number) {
   return days;
 }
 
-const AccFreqGraph = () => {
+const AccFreqRelationChart = () => {
   const theme = useTheme();
   const data = getDaysInMonth(4, 2024);
 
@@ -46,7 +46,7 @@ const AccFreqGraph = () => {
     <Card variant="outlined" sx={{ width: "100%" }}>
       <CardContent>
         <Typography component="h2" variant="subtitle2" gutterBottom>
-          Accuracy and Frequency
+          Relation Graph
         </Typography>
         <Stack sx={{ justifyContent: "space-between" }}>
           <Stack
@@ -63,7 +63,7 @@ const AccFreqGraph = () => {
             <Chip size="small" color="success" label="+35%" />
           </Stack>
           <Typography variant="caption" sx={{ color: "text.secondary" }}>
-            Halloween Accuracy and Frequency Statistics
+            Relationship Between Accuracy and Frequency
           </Typography>
         </Stack>
         <LineChart
@@ -134,4 +134,5 @@ const AccFreqGraph = () => {
     </Card>
   );
 };
-export default AccFreqGraph;
+
+export default AccFreqRelationChart;
