@@ -51,23 +51,29 @@ const riddleButtonStyles = {
 };
 
 const answerChoiceStyles = {
-  px: 2,
-  py: 1,
+  textShadow: "#FC0 1px 0 0px;",
+  boxShadow:
+    "0px 0px 5px 1px #39FF14, 0px 0px 10px 2px rgba(57, 255, 20, 0.7), 0px 0px 15px 3px rgba(57, 255, 20, 0.5)",
+  px: 4,
+  py: 5,
+  mx: 3,
   backgroundColor: "primary.main",
   color: "white",
-  borderRadius: 1,
+  borderRadius: 3,
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   width: "100%",
 };
+
 const riddleBoxStyles = {
-  mt: 20,
+  mt: 15,
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   alignSelf: "center",
 };
+
 const riddleAnswerRowsStyles = {
   mt: 10,
   display: "flex",

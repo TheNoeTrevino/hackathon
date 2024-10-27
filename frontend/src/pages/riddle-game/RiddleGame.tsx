@@ -1,4 +1,10 @@
-import { Box, ButtonBase, CircularProgress, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  ButtonBase,
+  CircularProgress,
+  Typography,
+} from "@mui/material";
 import { getRiddle } from "../../services/RiddleService";
 import { riddleProps } from "../../models/RiddleDTO";
 import { useEffect, useState } from "react";
@@ -38,44 +44,55 @@ const RiddleGame = () => {
   const checkAnswer = (answer: string): void => {
     if (answer !== riddle.answer) {
       if (tries < 2) {
-        alert("Incorrect!");
+        // alert("Incorrect!");
         setTries(tries + 1);
         return;
       } else {
-        alert(
-          "You have run out of tries. The correct answer was: " + riddle.answer,
-        );
+        // alert(
+        //   "You have run out of tries. The correct answer was: " + riddle.answer,
+        // );
         setLoading(!loading);
         return;
       }
     }
-    alert("Correct!");
+    // alert("Correct!");
     setLoading(!loading);
   };
 
   return (
     <>
       <Box sx={riddleBoxStyles}>
-        <Typography sx={{ mx: 5 }} variant="h2">
+        <Typography
+          sx={{
+            mx: 15,
+            textAlign: "center",
+            color: "white",
+            textShadow: "#FC0 1px 0 10px;",
+          }}
+          variant="h2"
+        >
           {riddle.question}
         </Typography>
       </Box>
 
-      {riddleRows.map((row) => (
-        <Box sx={riddleAnswerRowsStyles}>
-          {row.map((answer) => (
-            <ButtonBase
-              key={answer}
-              sx={{ mt: 1, mx: 4, width: "100%" }}
-              onClick={checkAnswer.bind(this, answer)}
-            >
-              <Box sx={answerChoiceStyles} key={answer}>
-                <Typography variant="h4">{answer}</Typography>
-              </Box>
-            </ButtonBase>
-          ))}
-        </Box>
-      ))}
+      <Box sx={{ position: "fixed", bottom: 60, width: "100%" }}>
+        {riddleRows.map((row) => (
+          <Box sx={riddleAnswerRowsStyles}>
+            {row.map((answer) => (
+              <Button
+                key={answer}
+                sx={answerChoiceStyles}
+                onClick={checkAnswer.bind(this, answer)}
+                variant="contained"
+              >
+                <Typography variant="h4" textAlign="center">
+                  {answer}
+                </Typography>
+              </Button>
+            ))}
+          </Box>
+        ))}
+      </Box>
     </>
   );
 };
