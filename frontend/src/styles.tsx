@@ -84,6 +84,14 @@ const riddleAnswerRowsStyles = {
   alignSelf: "center",
 };
 
+const riddleQuestionStyles = {
+  mx: 15,
+  textAlign: "center",
+  color: "white",
+  textShadow: "#FC0 1px 0 10px;",
+  justifySelf: "center",
+};
+
 export {
   riddleAnswerRowsStyles,
   answerChoiceStyles,
@@ -91,4 +99,5 @@ export {
   riddleBoxStyles,
   navbarStyles,
   riddleStyles,
+  riddleQuestionStyles,
 };
