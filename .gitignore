@@ -3,3 +3,4 @@ backend/env
 .DS_Store
 frontend/.vite/
 .DS_Store
+frontend/.vite
