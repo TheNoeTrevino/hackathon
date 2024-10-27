@@ -1,8 +1,8 @@
 import {
   Box,
   Button,
-  ButtonBase,
   CircularProgress,
+  Snackbar,
   Typography,
 } from "@mui/material";
 import { getRiddle } from "../../services/RiddleService";
@@ -13,6 +13,7 @@ import {
   riddleAnswerRowsStyles,
   riddleBoxStyles,
 } from "../../styles";
+import TransitionsSnackbar from "./RiddleToaster";
 
 const RiddleGame = () => {
   const [riddle, setRiddle] = useState<riddleProps | null>(null);
@@ -41,33 +42,37 @@ const RiddleGame = () => {
     riddle.answerChoices.slice(2, 4),
   ];
 
-  const checkAnswer = (answer: string): void => {
+  const checkAnswer = async (answer: string): Promise<void> => {
     if (answer !== riddle.answer) {
       if (tries < 2) {
-        // alert("Incorrect!");
         setTries(tries + 1);
         return;
       } else {
-        // alert(
-        //   "You have run out of tries. The correct answer was: " + riddle.answer,
-        // );
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         setLoading(!loading);
         return;
       }
     }
-    // alert("Correct!");
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     setLoading(!loading);
   };
 
   return (
     <>
-      <Box sx={riddleBoxStyles}>
+      <Box
+        sx={{
+          riddleBoxStyles,
+        }}
+      >
+        {/* <TransitionsSnackbar></TransitionsSnackbar> */}
         <Typography
           sx={{
             mx: 15,
             textAlign: "center",
             color: "white",
             textShadow: "#FC0 1px 0 10px;",
+
+            justifySelf: "center",
           }}
           variant="h2"
         >

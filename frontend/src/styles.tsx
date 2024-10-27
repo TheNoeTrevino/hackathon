@@ -67,11 +67,13 @@ const answerChoiceStyles = {
 };
 
 const riddleBoxStyles = {
-  mt: 15,
+  // mt: 15,
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   alignSelf: "center",
+  textAlign: "center",
+  justifySelf: "center",
 };
 
 const riddleAnswerRowsStyles = {
