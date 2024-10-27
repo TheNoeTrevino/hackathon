@@ -15,7 +15,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import UserOptions from "./UserOptions";
 import CandyIcon from "../icons/CandyIcon";
 
-const pages = [{ name: "CandyWay", path: "/" }];
+const pages = [{ name: "The Candy Vault", path: "/" }];
 
 function NavBar() {
   const { loginWithRedirect, isAuthenticated } = useAuth0();
@@ -97,7 +97,7 @@ function NavBar() {
             {isAuthenticated ? (
               <UserOptions />
             ) : (
-              <Button color="inherit" onClick={() => loginWithRedirect()}>
+              <Button color="secondary" onClick={() => loginWithRedirect()}>
                 Sign In
               </Button>
             )}
