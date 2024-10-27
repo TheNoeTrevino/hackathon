@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 const UserOptions = () => {
   const settings = [
     { name: "Profile", path: "/profile" },
-    { name: "Account", path: "/account" },
     { name: "Dashboard", path: "/dashboard" },
   ];
 
