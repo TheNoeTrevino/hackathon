@@ -29,7 +29,7 @@ const UserOptions = () => {
   return (
     <>
       <Tooltip title="Open settings">
-        <IconButton onClick={handleOpenUserMenu} sx={{ mr: -5 }}>
+        <IconButton onClick={handleOpenUserMenu}>
           <Avatar alt={user?.name} src={user?.picture} />
         </IconButton>
       </Tooltip>
