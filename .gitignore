@@ -5,4 +5,4 @@ frontend/.vite/
 .DS_Store
 frontend/.vite
 node_modules/
-frontend/.vite/deps/
+frontend/.vite/deps
