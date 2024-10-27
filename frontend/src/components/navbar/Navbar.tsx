@@ -15,11 +15,7 @@ import { navbarStyles } from "../../styles";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserOptions from "./UserOptions";
 
-const pages = [
-  { name: "CandyWay", path: "/" },
-  { name: "About", path: "/about" },
-  { name: "Riddle", path: "/riddle-game" },
-];
+const pages = [{ name: "CandyWay", path: "/" }];
 
 function NavBar() {
   const { loginWithRedirect, isAuthenticated } = useAuth0();
