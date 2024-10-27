@@ -1,7 +1,12 @@
-import { Box, ButtonBase, Typography } from "@mui/material";
+import { Box, ButtonBase, CircularProgress, Typography } from "@mui/material";
 import { getRiddle } from "../../services/RiddleService";
 import { riddleProps } from "../../models/RiddleDTO";
 import { useEffect, useState } from "react";
+import {
+  answerChoiceStyles,
+  riddleAnswerRowsStyles,
+  riddleBoxStyles,
+} from "../../styles";
 
 const RiddleGame = () => {
   const [riddle, setRiddle] = useState<riddleProps | null>(null);
@@ -19,55 +24,33 @@ const RiddleGame = () => {
   }, [loading]);
 
   if (!riddle) {
-    return <Typography>Loading...</Typography>;
+    return (
+      <Box>
+        <CircularProgress size="50px" />;
+      </Box>
+    );
   }
-
   const riddleRows = [
     riddle.answerChoices.slice(0, 2),
     riddle.answerChoices.slice(2, 4),
   ];
 
-  const answerChoiceStyles = {
-    px: 2,
-    py: 1,
-    backgroundColor: "primary.main",
-    color: "white",
-    borderRadius: 1,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-  };
-  const riddleBoxStyles = {
-    mt: 20,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "center",
-  };
-
-  const checkAnswer = (answer: string) => {
-    if (answer === riddle.answer) {
-      alert("Correct!");
-      setLoading(!loading);
-    } else {
-      alert("Incorrect!");
-      setTries(tries + 1);
-      if (tries >= 2) {
+  const checkAnswer = (answer: string): void => {
+    if (answer !== riddle.answer) {
+      if (tries < 2) {
+        alert("Incorrect!");
+        setTries(tries + 1);
+        return;
+      } else {
         alert(
           "You have run out of tries. The correct answer was: " + riddle.answer,
         );
         setLoading(!loading);
+        return;
       }
     }
-  };
-
-  const riddleAnserRowsStyles = {
-    mt: 10,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "center",
+    alert("Correct!");
+    setLoading(!loading);
   };
 
   return (
@@ -79,13 +62,14 @@ const RiddleGame = () => {
       </Box>
 
       {riddleRows.map((row) => (
-        <Box sx={riddleAnserRowsStyles}>
+        <Box sx={riddleAnswerRowsStyles}>
           {row.map((answer) => (
             <ButtonBase
+              key={answer}
               sx={{ mt: 1, mx: 4, width: "100%" }}
               onClick={checkAnswer.bind(this, answer)}
             >
-              <Box sx={answerChoiceStyles}>
+              <Box sx={answerChoiceStyles} key={answer}>
                 <Typography variant="h4">{answer}</Typography>
               </Box>
             </ButtonBase>

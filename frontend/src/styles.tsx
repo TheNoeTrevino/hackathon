@@ -50,4 +50,37 @@ const riddleButtonStyles = {
   transform: "translateX(-50%)",
 };
 
-export { navbarStyles, riddleStyles, riddleButtonStyles };
+const answerChoiceStyles = {
+  px: 2,
+  py: 1,
+  backgroundColor: "primary.main",
+  color: "white",
+  borderRadius: 1,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "100%",
+};
+const riddleBoxStyles = {
+  mt: 20,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  alignSelf: "center",
+};
+const riddleAnswerRowsStyles = {
+  mt: 10,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  alignSelf: "center",
+};
+
+export {
+  riddleAnswerRowsStyles,
+  answerChoiceStyles,
+  riddleButtonStyles,
+  riddleBoxStyles,
+  navbarStyles,
+  riddleStyles,
+};
