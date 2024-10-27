@@ -53,8 +53,12 @@ const RiddleGame = () => {
   useEffect(() => {
     const fetchRiddle = async () => {
       const riddleData = await getRiddle();
-      setRiddle(riddleData), [loading];
+      setRiddle(riddleData);
       setTries(0);
+
+      // dalays
+      const delays = riddleData.answerChoices.map((_, index) => index * 300);
+      setButtonDelays(delays);
     };
 
     fetchRiddle();
@@ -67,6 +71,7 @@ const RiddleGame = () => {
       </Box>
     );
   }
+
   const riddleRows = [
     riddle.answerChoices.slice(0, 2),
     riddle.answerChoices.slice(2, 4),
@@ -74,61 +79,102 @@ const RiddleGame = () => {
 
   const checkAnswer = async (answer: string): Promise<void> => {
     if (answer !== riddle.answer) {
+      setToasterText("Try again!");
+      setToasterContentProps({
+        style: { backgroundColor: "#ffcc00", color: "#373038" },
+      });
+      setToasterState({
+        open: true,
+        Transition: Slide,
+      });
+
       if (tries < 2) {
         setTries(tries + 1);
         return;
       } else {
         await new Promise((resolve) => setTimeout(resolve, 1000));
         setLoading(!loading);
+
         return;
       }
     }
+
+    setToasterText("Correct! Stand back, candy vault opening...");
+    setToasterContentProps({
+      style: { backgroundColor: "#29AD13", color: "#373038" },
+    });
+    setToasterState({
+      open: true,
+      Transition: Slide,
+    });
     await new Promise((resolve) => setTimeout(resolve, 1000));
     setLoading(!loading);
   };
 
   return (
     <>
-      <TransitionsSnackbar></TransitionsSnackbar>
-      <Box
-        sx={{
-          riddleBoxStyles,
-        }}
-      >
-        {/* <TransitionsSnackbar></TransitionsSnackbar> */}
-        <Typography
+      <Slide in={true} direction="down" timeout={500} key={riddle.question}>
+        <Box
           sx={{
             mx: 15,
             textAlign: "center",
             color: "#FFFFFF",
-            textShadow: "#FFC341 5px 0 100px, #FFC341 5px 0 100px, #FFC341 5px 0 100px;",
+            textShadow:
+              "#FFC341 5px 0 100px, #FFC341 5px 0 100px, #FFC341 5px 0 100px;",
 
             justifySelf: "center",
           }}
-          variant="h2"
         >
-          {riddle.question}
-        </Typography>
-      </Box>
+          <Typography sx={riddleQuestionStyles} variant="h2">
+            {riddle.question}
+          </Typography>
+        </Box>
+      </Slide>
 
       <Box sx={{ position: "fixed", bottom: 60, width: "100%" }}>
-        {riddleRows.map((row) => (
+        {riddleRows.map((row, rowIndex) => (
           <Box sx={riddleAnswerRowsStyles}>
-            {row.map((answer) => (
-              <Button
+            {row.map((answer, index) => (
+              <Slide
+                in={true}
                 key={answer}
-                sx={answerChoiceStyles}
-                onClick={checkAnswer.bind(this, answer)}
-                variant="contained"
+                direction="up"
+                timeout={500}
+                style={{
+                  transitionDelay: `${buttonDelays[rowIndex * 2 + index]}ms`,
+                }}
               >
-                <Typography variant="h4" textAlign="center">
-                  {answer}
-                </Typography>
-              </Button>
+                <Button
+                  sx={answerChoiceStyles}
+                  onClick={checkAnswer.bind(this, answer)}
+                  variant="contained"
+                >
+                  <Typography variant="h4" textAlign="center">
+                    {answer}
+                  </Typography>
+                </Button>
+              </Slide>
             ))}
           </Box>
         ))}
       </Box>
+
+      <Snackbar
+        transitionDuration={200}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={toasterState.open}
+        onClose={handleClose}
+        TransitionComponent={toasterState.Transition}
+        key={toasterState.Transition.name}
+        autoHideDuration={1200}
+        message={
+          <Typography variant="body1">
+            <CandyIcon />
+            {toasterText}
+          </Typography>
+        }
+        ContentProps={toasterContentProps}
+      />
     </>
   );
 };

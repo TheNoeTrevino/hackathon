@@ -85,6 +85,7 @@ const riddleAnswerRowsStyles = {
 };
 
 const riddleQuestionStyles = {
+  mt: 5,
   mx: 15,
   textAlign: "center",
   color: "white",
