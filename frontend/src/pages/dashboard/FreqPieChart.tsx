@@ -5,17 +5,13 @@ import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import LinearProgress, {
-  linearProgressClasses,
-} from "@mui/material/LinearProgress";
 
 import {
   IndiaFlag,
   UsaFlag,
   BrazilFlag,
   GlobeFlag,
-} from "../../../src/components/icons/CustomIcons";
+} from "../../components/icons/CustomIcons";
 
 const data = [
   { label: "India", value: 50000 },
@@ -122,15 +118,15 @@ const colors = [
   "hsl(220, 20%, 25%)",
 ];
 
-export default function ChartUserByAcc() {
+const FreqPieChart = () => {
   return (
     <Card
       variant="outlined"
       sx={{ display: "flex", flexDirection: "column", gap: "8px", flexGrow: 1 }}
     >
       <CardContent>
-        <Typography component="h2" variant="subtitle2">
-          Users by country
+        <Typography textAlign="center" component="h2" variant="subtitle2">
+          Average Frequency/Hr
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <PieChart
@@ -159,43 +155,9 @@ export default function ChartUserByAcc() {
             <PieCenterLabel primaryText="98.5K" secondaryText="Total" />
           </PieChart>
         </Box>
-        {countries.map((country, index) => (
-          <Stack
-            key={index}
-            direction="row"
-            sx={{ alignItems: "center", gap: 2, pb: 2 }}
-          >
-            {country.flag}
-            <Stack sx={{ gap: 1, flexGrow: 1 }}>
-              <Stack
-                direction="row"
-                sx={{
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  gap: 2,
-                }}
-              >
-                <Typography variant="body2" sx={{ fontWeight: "500" }}>
-                  {country.name}
-                </Typography>
-                <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                  {country.value}%
-                </Typography>
-              </Stack>
-              <LinearProgress
-                variant="determinate"
-                aria-label="Number of users by country"
-                value={country.value}
-                sx={{
-                  [`& .${linearProgressClasses.bar}`]: {
-                    backgroundColor: country.color,
-                  },
-                }}
-              />
-            </Stack>
-          </Stack>
-        ))}
       </CardContent>
     </Card>
   );
-}
+};
+
+export default FreqPieChart;
