@@ -45,7 +45,7 @@ const AccFreqRelationChart = () => {
 
   return (
     <Slide in={true} direction="up" timeout={600} key={data[0]}>
-      <Card variant="outlined" sx={{ width: "100%" }}>
+      <Card variant="outlined" sx={{ width: "100%", background: "#6C809A" }}>
         <CardContent>
           <Typography component="h2" variant="subtitle2" gutterBottom>
             Relation Graph
@@ -128,8 +128,8 @@ const AccFreqRelationChart = () => {
             }}
           >
             {/* TODO someone add colors here, show go darker as you go downwards. Some sort of orange*/}
-            <AreaGradient color="#ED743D" id="direct" />
-            <AreaGradient color={theme.palette.primary.main} id="referral" />
+            <AreaGradient color="#F35800" id="direct" />
+            <AreaGradient color= "#A83279" id="referral" />
             <AreaGradient color={theme.palette.primary.dark} id="organic" />
           </LineChart>
         </CardContent>
