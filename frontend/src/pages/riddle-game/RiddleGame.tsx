@@ -79,19 +79,26 @@ const RiddleGame = () => {
 
   const checkAnswer = async (answer: string): Promise<void> => {
     if (answer !== riddle.answer) {
-      setToasterText("Try again!");
-      setToasterContentProps({
-        style: { backgroundColor: "#ffcc00", color: "#373038" },
-      });
-      setToasterState({
-        open: true,
-        Transition: Slide,
-      });
-
+      setTries(tries + 1);
       if (tries < 2) {
-        setTries(tries + 1);
+        setToasterText("Try again!");
+        setToasterContentProps({
+          style: { backgroundColor: "#ffcc00", color: "#373038" },
+        });
+        setToasterState({
+          open: true,
+          Transition: Slide,
+        });
         return;
       } else {
+        setToasterText(`All out of tries. The answer was: ${riddle.answer}`);
+        setToasterContentProps({
+          style: { backgroundColor: "#ffcc00", color: "#373038" },
+        });
+        setToasterState({
+          open: true,
+          Transition: Slide,
+        });
         await new Promise((resolve) => setTimeout(resolve, 1000));
         setLoading(!loading);
 
