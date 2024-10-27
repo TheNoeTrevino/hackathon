@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { navbarStyles } from "../../styles";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserOptions from "./UserOptions";
+import CandyIcon from "../icons/CandyIcon";
 
 const pages = [{ name: "CandyWay", path: "/" }];
 
@@ -34,7 +35,7 @@ function NavBar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <CakeIcon sx={navbarStyles.cakeIcon} />
+          <CandyIcon />
           <Box sx={navbarStyles.menuIconButton}>
             <IconButton
               size="large"
