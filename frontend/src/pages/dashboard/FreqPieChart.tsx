@@ -12,6 +12,7 @@ import {
   BrazilFlag,
   GlobeFlag,
 } from "../../components/icons/CustomIcons";
+import Slide from "@mui/material/Slide/Slide";
 
 const data = [
   { label: "India", value: 50000 },
@@ -120,43 +121,50 @@ const colors = [
 
 const FreqPieChart = () => {
   return (
-    <Card
-      variant="outlined"
-      sx={{ display: "flex", flexDirection: "column", gap: "8px", flexGrow: 1 }}
-    >
-      <CardContent>
-        <Typography textAlign="center" component="h2" variant="subtitle2">
-          Average Frequency/Hr
-        </Typography>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <PieChart
-            colors={colors}
-            margin={{
-              left: 80,
-              right: 80,
-              top: 80,
-              bottom: 80,
-            }}
-            series={[
-              {
-                data,
-                innerRadius: 75,
-                outerRadius: 100,
-                paddingAngle: 0,
-                highlightScope: { faded: "global", highlighted: "item" },
-              },
-            ]}
-            height={260}
-            width={260}
-            slotProps={{
-              legend: { hidden: true },
-            }}
-          >
-            <PieCenterLabel primaryText="98.5K" secondaryText="Total" />
-          </PieChart>
-        </Box>
-      </CardContent>
-    </Card>
+    <Slide in={true} direction="right" timeout={600}>
+      <Card
+        variant="outlined"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "8px",
+          flexGrow: 1,
+        }}
+      >
+        <CardContent>
+          <Typography textAlign="center" component="h2" variant="subtitle2">
+            Average Frequency/Hr
+          </Typography>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <PieChart
+              colors={colors}
+              margin={{
+                left: 80,
+                right: 80,
+                top: 80,
+                bottom: 80,
+              }}
+              series={[
+                {
+                  data,
+                  innerRadius: 75,
+                  outerRadius: 100,
+                  paddingAngle: 0,
+                  highlightScope: { faded: "global", highlighted: "item" },
+                },
+              ]}
+              height={260}
+              width={260}
+              slotProps={{
+                legend: { hidden: true },
+              }}
+            >
+              <PieCenterLabel primaryText="98.5K" secondaryText="Total" />
+            </PieChart>
+          </Box>
+        </CardContent>
+      </Card>
+    </Slide>
   );
 };
 

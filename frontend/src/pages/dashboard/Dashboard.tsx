@@ -4,9 +4,10 @@ import CircularProgress from "@mui/material/CircularProgress/CircularProgress";
 import GoLogin from "../users/GoLogin";
 import AccPieChart from "./AccPieChart";
 import CopyrightIcon from "@mui/icons-material/Copyright";
-import AccFreqGraph from "./AccFreqChart";
+import AccFreqGraph from "./AccFreqGraph";
 import FreqPieChart from "./FreqPieChart";
-import AccFreqRelationChart from "./AccFreqRelationChart";
+import AccFreqRelationChart from "./AccFreqRelationGraph";
+import Slide from "@mui/material/Slide/Slide";
 
 const Dashboard = () => {
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
@@ -50,16 +51,19 @@ const Dashboard = () => {
         <FreqPieChart />
         <AccFreqRelationChart />
       </Box>
-      <Box
-        color="white"
-        position="fixed"
-        bottom={30}
-        width="100%"
-        textAlign="center"
-      >
-        <CopyrightIcon fontSize="small" sx={{ mr: 1 }} />
-        SegFault
-      </Box>
+
+      <Slide in={true} direction="up" timeout={500}>
+        <Box
+          color="white"
+          position="fixed"
+          bottom={30}
+          width="100%"
+          textAlign="center"
+        >
+          <CopyrightIcon fontSize="small" sx={{ mr: 1 }} />
+          SegFault
+        </Box>
+      </Slide>
     </Box>
   ) : (
     <GoLogin />

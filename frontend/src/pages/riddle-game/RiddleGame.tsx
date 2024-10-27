@@ -12,7 +12,6 @@ import { riddleProps } from "../../models/RiddleDTO";
 import {
   answerChoiceStyles,
   riddleAnswerRowsStyles,
-  riddleBoxStyles,
   riddleQuestionStyles,
 } from "../../styles";
 import CandyIcon from "../../components/icons/CandyIcon";
