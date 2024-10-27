@@ -4,6 +4,8 @@ import Fade from "@mui/material/Fade";
 import Slide, { SlideProps } from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import { useState } from "react";
+import { Typography } from "@mui/material";
+import CandyIcon from "../../components/icons/CandyIcon";
 
 function SlideTransition(props: SlideProps) {
   return <Slide {...props} direction="up" />;
@@ -49,13 +51,21 @@ const TransitionsSnackbar = () => {
       <Button onClick={handleClick(Fade)}>Fade Transition</Button>
       <Button onClick={handleClick(SlideTransition)}>Slide Transition</Button>
       <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        transitionDuration={600}
+        anchorOrigin={{ vertical: "top", horizontal: "left" }}
         open={state.open}
         onClose={handleClose}
         TransitionComponent={state.Transition}
-        message="I love snacks"
         key={state.Transition.name}
         autoHideDuration={1200}
+        message={
+          <Typography variant="body1">
+            <CandyIcon /> Correct! Opening vault...
+          </Typography>
+        }
+        ContentProps={{
+          style: { backgroundColor: "#FFC341", color: "#373038" },
+        }}
       />
     </div>
   );

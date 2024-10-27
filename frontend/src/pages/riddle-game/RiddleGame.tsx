@@ -59,6 +59,7 @@ const RiddleGame = () => {
 
   return (
     <>
+      <TransitionsSnackbar></TransitionsSnackbar>
       <Box
         sx={{
           riddleBoxStyles,
