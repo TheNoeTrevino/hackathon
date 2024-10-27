@@ -8,10 +8,10 @@ import { getAuthDomain, getClientID } from "./Secret";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#1E201E",
+      main: "#373038",
     },
     secondary: {
-      main: "#3C3D37",
+      main: "#FFC341",
     },
   },
 });

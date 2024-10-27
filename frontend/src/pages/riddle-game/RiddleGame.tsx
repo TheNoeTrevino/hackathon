@@ -70,8 +70,8 @@ const RiddleGame = () => {
           sx={{
             mx: 15,
             textAlign: "center",
-            color: "white",
-            textShadow: "#FC0 1px 0 10px;",
+            color: "#FFFFFF",
+            textShadow: "#FFC341 5px 0 100px, #FFC341 5px 0 100px, #FFC341 5px 0 100px;",
 
             justifySelf: "center",
           }}

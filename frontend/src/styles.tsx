@@ -9,7 +9,7 @@ const navbarStyles = {
     fontFamily: "monospace",
     fontWeight: 700,
     letterSpacing: ".3rem",
-    color: "inherit",
+    color: "primary",
     textDecoration: "none",
   },
   menuIconButton: {
@@ -26,7 +26,7 @@ const navbarStyles = {
     fontFamily: "monospace",
     fontWeight: 700,
     letterSpacing: ".3rem",
-    color: "inherit",
+    color: "primary",
     textDecoration: "none",
   },
   button: {
@@ -53,7 +53,7 @@ const riddleButtonStyles = {
 const answerChoiceStyles = {
   textShadow: "#FC0 1px 0 0px;",
   boxShadow:
-    "0px 0px 5px 1px #39FF14, 0px 0px 10px 2px rgba(57, 255, 20, 0.7), 0px 0px 15px 3px rgba(57, 255, 20, 0.5)",
+    "0px 0px 75px 1px #88E032, 0px 0px 10px 2px rgba(57, 255, 20, 0.7), 0px 0px 15px 3px rgba(57, 255, 20, 0.5)",
   px: 4,
   py: 5,
   mx: 3,

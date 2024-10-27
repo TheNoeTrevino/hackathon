@@ -15,7 +15,7 @@ riddle_repo = [
         "answer": "A coffin",
     },
     {
-        "question": "I protect, I stand tall my purpose is to strike fear in all. What am I?",
+        "question": "I protect, I stand tall; my purpose is to strike fear in all. What am I?",
         "answerChoices": ["A ghost", "A scarecrow", "A skeleton", "A zombie"],
         "answer": "A scarecrow",
     },
