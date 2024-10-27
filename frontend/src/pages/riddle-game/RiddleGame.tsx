@@ -1,21 +1,51 @@
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Snackbar,
-  Typography,
-} from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { TransitionProps } from "@mui/material/transitions";
+import Box from "@mui/material/Box";
+import Slide from "@mui/material/Slide";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import Typography from "@mui/material/Typography";
+import Snackbar from "@mui/material/Snackbar";
+import Fade from "@mui/material/Fade";
 import { getRiddle } from "../../services/RiddleService";
 import { riddleProps } from "../../models/RiddleDTO";
-import { useEffect, useState } from "react";
 import {
   answerChoiceStyles,
   riddleAnswerRowsStyles,
   riddleBoxStyles,
+  riddleQuestionStyles,
 } from "../../styles";
-import TransitionsSnackbar from "./RiddleToaster";
+import CandyIcon from "../../components/icons/CandyIcon";
 
 const RiddleGame = () => {
+  const handleClose = () => {
+    setToasterState({
+      ...toasterState,
+      open: false,
+    });
+  };
+
+  const [toasterState, setToasterState] = useState<{
+    open: boolean;
+    Transition: React.ComponentType<
+      TransitionProps & {
+        children: React.ReactElement<any, any>;
+      }
+    >;
+  }>({
+    open: false,
+    Transition: Fade,
+  });
+
+  const [toasterText, setToasterText] = useState<string>("");
+  const [toasterContentProps, setToasterContentProps] = useState<{
+    style: { backgroundColor: string; color: string };
+  }>({
+    style: { backgroundColor: "#ffffff", color: "#373038" },
+  });
+
+  const [buttonDelays, setButtonDelays] = useState<number[]>([]);
+
   const [riddle, setRiddle] = useState<riddleProps | null>(null);
   const [tries, setTries] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
