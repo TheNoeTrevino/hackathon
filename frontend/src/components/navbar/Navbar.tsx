@@ -11,7 +11,6 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import { navbarStyles } from "../../styles";
-import { useAuth0 } from "@auth0/auth0-react";
 import UserOptions from "./UserOptions";
 import CandyIcon from "../icons/CandyIcon";
 import Slide from "@mui/material/Slide/Slide";
@@ -19,7 +18,6 @@ import Slide from "@mui/material/Slide/Slide";
 const pages = [{ name: "The Candy Vault", path: "/" }];
 
 function NavBar() {
-  const { loginWithRedirect, isAuthenticated } = useAuth0();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
@@ -94,15 +92,6 @@ function NavBar() {
                   {page.name}
                 </Button>
               ))}
-            </Box>
-            <Box sx={{ flexGrow: 0 }}>
-              {isAuthenticated ? (
-                <UserOptions />
-              ) : (
-                <Button color="secondary" onClick={() => loginWithRedirect()}>
-                  Sign In
-                </Button>
-              )}
             </Box>
           </Toolbar>
         </Container>
