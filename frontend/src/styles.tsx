@@ -67,38 +67,39 @@ const answerChoiceStyles = {
 };
 
 const riddleBoxStyles = {
-  // mt: 15,
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  alignSelf: "center",
+  mx: "4rem",
   textAlign: "center",
+  color: "#FFFFFF",
+  textShadow: "#FFC341 5px 0 100px, #FFC341 5px 0 100px, #FFC341 5px 0 100px;",
   justifySelf: "center",
 };
 
 const riddleAnswerRowsStyles = {
-  mt: 10,
+  mt: "rem",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   alignSelf: "center",
 };
 
-const riddleQuestionStyles = {
-  mt: 5,
-  mx: 15,
+const riddleQuestionTextStyles = {
+  mt: "5rem",
+  mx: "1.5rem",
   textAlign: "center",
   color: "white",
   textShadow: "#FC0 1px 0 10px;",
   justifySelf: "center",
 };
 
+const correctToasterStyles = { backgroundColor: "#29AD13", color: "#373038" };
+
 export {
+  correctToasterStyles,
   riddleAnswerRowsStyles,
   answerChoiceStyles,
   riddleButtonStyles,
   riddleBoxStyles,
   navbarStyles,
   riddleStyles,
-  riddleQuestionStyles,
+  riddleQuestionTextStyles,
 };

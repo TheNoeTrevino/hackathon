@@ -11,12 +11,15 @@ import { getRiddle } from "../../services/RiddleService";
 import { riddleProps } from "../../models/RiddleDTO";
 import {
   answerChoiceStyles,
+  correctToasterStyles,
   riddleAnswerRowsStyles,
-  riddleQuestionStyles,
+  riddleBoxStyles,
+  riddleQuestionTextStyles,
 } from "../../styles";
 import CandyIcon from "../../components/icons/CandyIcon";
 
 const RiddleGame = () => {
+  // toaster section
   const handleClose = () => {
     setToasterState({
       ...toasterState,
@@ -37,11 +40,8 @@ const RiddleGame = () => {
   });
 
   const [toasterText, setToasterText] = useState<string>("");
-  const [toasterContentProps, setToasterContentProps] = useState<{
-    style: { backgroundColor: string; color: string };
-  }>({
-    style: { backgroundColor: "#ffffff", color: "#373038" },
-  });
+  const [toasterContentProps, setToasterContentProps] = useState<{}>({});
+  // end toaster section
 
   const [buttonDelays, setButtonDelays] = useState<number[]>([]);
 
@@ -50,13 +50,13 @@ const RiddleGame = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const fetchRiddle = async () => {
-      const riddleData = await getRiddle();
+    const fetchRiddle = () => {
+      const riddleData = getRiddle();
       setRiddle(riddleData);
+
       setTries(0);
 
-      // dalays
-      const delays = riddleData.answerChoices.map((_, index) => index * 300);
+      const delays = riddleData.answerChoices.map((_, index) => index * 200);
       setButtonDelays(delays);
     };
 
@@ -105,9 +105,9 @@ const RiddleGame = () => {
       }
     }
 
-    setToasterText("Correct! Stand back, candy vault opening...");
+    setToasterText("Correct! Take a candy");
     setToasterContentProps({
-      style: { backgroundColor: "#29AD13", color: "#373038" },
+      style: correctToasterStyles,
     });
     setToasterState({
       open: true,
@@ -118,20 +118,10 @@ const RiddleGame = () => {
   };
 
   return (
-    <>
+    <Box>
       <Slide in={true} direction="down" timeout={500} key={riddle.question}>
-        <Box
-          sx={{
-            mx: 15,
-            textAlign: "center",
-            color: "#FFFFFF",
-            textShadow:
-              "#FFC341 5px 0 100px, #FFC341 5px 0 100px, #FFC341 5px 0 100px;",
-
-            justifySelf: "center",
-          }}
-        >
-          <Typography sx={riddleQuestionStyles} variant="h2">
+        <Box sx={riddleBoxStyles}>
+          <Typography sx={riddleQuestionTextStyles} variant="h2">
             {riddle.question}
           </Typography>
         </Box>
@@ -166,7 +156,7 @@ const RiddleGame = () => {
       </Box>
 
       <Snackbar
-        transitionDuration={200}
+        transitionDuration={400}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={toasterState.open}
         onClose={handleClose}
@@ -181,7 +171,7 @@ const RiddleGame = () => {
         }
         ContentProps={toasterContentProps}
       />
-    </>
+    </Box>
   );
 };
 
