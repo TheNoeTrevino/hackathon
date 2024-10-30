@@ -54,6 +54,10 @@ const answerChoiceStyles = {
   textShadow: "#FC0 1px 0 0px;",
   boxShadow:
     "0px 0px 50px 1px #88E032, 0px 0px 10px 2px rgba(57, 255, 20, 0.7), 0px 0px 15px 3px rgba(57, 255, 20, 0.5)",
+  "&:hover": {
+    boxShadow:
+      "0px 0px 50px 1px #FF0000, 0px 0px 10px 2px rgba(57, 255, 20, 0.7), 0px 0px 15px 3px rgba(57, 255, 20, 0.5)",
+  },
   px: 4,
   py: 5,
   mx: 3,
@@ -67,7 +71,7 @@ const answerChoiceStyles = {
 };
 
 const riddleBoxStyles = {
-  mx: "4rem",
+  mx: "6rem",
   textAlign: "center",
   color: "#FFFFFF",
   textShadow: "#FFC341 5px 0 100px, #FFC341 5px 0 100px, #FFC341 5px 0 100px;",
@@ -91,10 +95,13 @@ const riddleQuestionTextStyles = {
   justifySelf: "center",
 };
 
-const correctToasterStyles = { backgroundColor: "#29AD13", color: "#373038" };
+const toasterStyles = {
+  correct: { backgroundColor: "#29AD13", color: "#373038" },
+  incorrect: { backgroundColor: "#ffcc00", color: "#373038" },
+  outOfTries: { backgroundColor: "#ff0000", color: "#003038" },
+};
 
 export {
-  correctToasterStyles,
   riddleAnswerRowsStyles,
   answerChoiceStyles,
   riddleButtonStyles,
@@ -102,4 +109,5 @@ export {
   navbarStyles,
   riddleStyles,
   riddleQuestionTextStyles,
+  toasterStyles,
 };
