@@ -1,9 +1,9 @@
-import axios from "axios";
 import { riddleProps } from "../models/RiddleDTO";
+import RiddlesRepo from "../repository/RiddlesRepository";
 
-export async function getRiddle(): Promise<riddleProps> {
-  const response = await axios.get("http://127.0.0.1:8000/riddle");
-  const riddle: riddleProps = response.data;
-  console.log(riddle);
-  return riddle;
+export function getRiddle(): riddleProps {
+  const randRiddle =
+    RiddlesRepo[Math.floor(Math.random() * RiddlesRepo.length)];
+
+  return randRiddle;
 }
