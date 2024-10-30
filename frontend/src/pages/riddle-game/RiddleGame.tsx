@@ -1,44 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { TransitionProps } from "@mui/material/transitions";
+import { useState, useEffect } from "react";
+import getRiddle from "../../services/RiddleService";
+import riddleProps from "../../models/RiddleDTO";
 import Box from "@mui/material/Box";
 import Slide from "@mui/material/Slide";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Snackbar from "@mui/material/Snackbar";
-import Fade from "@mui/material/Fade";
-import { getRiddle } from "../../services/RiddleService";
-import { riddleProps } from "../../models/RiddleDTO";
 import {
   answerChoiceStyles,
-  correctToasterStyles,
   riddleAnswerRowsStyles,
   riddleBoxStyles,
   riddleQuestionTextStyles,
+  toasterStyles,
 } from "../../styles";
 import CandyIcon from "../../components/icons/CandyIcon";
 
 const RiddleGame = () => {
   // toaster section
-  const handleClose = () => {
-    setToasterState({
-      ...toasterState,
-      open: false,
-    });
+  const handleToasterClose = () => {
+    setToasterState(false);
+    setToasterHideawayLength(1300);
   };
-
-  const [toasterState, setToasterState] = useState<{
-    open: boolean;
-    Transition: React.ComponentType<
-      TransitionProps & {
-        children: React.ReactElement<any, any>;
-      }
-    >;
-  }>({
-    open: false,
-    Transition: Fade,
-  });
-
+  const [toasterState, setToasterState] = useState<boolean>(false);
+  const [toasterHideawayLength, setToasterHideawayLength] =
+    useState<number>(1300);
   const [toasterText, setToasterText] = useState<string>("");
   const [toasterContentProps, setToasterContentProps] = useState<{}>({});
   // end toaster section
@@ -56,7 +42,9 @@ const RiddleGame = () => {
 
       setTries(0);
 
-      const delays = riddleData.answerChoices.map((_, index) => index * 200);
+      const delays = riddleData.answerChoices.map(
+        (_: any, index: number) => index * 200,
+      );
       setButtonDelays(delays);
     };
 
@@ -64,6 +52,7 @@ const RiddleGame = () => {
   }, [loading]);
 
   if (!riddle) {
+    // i cant even see this
     return (
       <Box>
         <CircularProgress size="50px" />;
@@ -82,38 +71,27 @@ const RiddleGame = () => {
       if (tries < 2) {
         setToasterText("Try again!");
         setToasterContentProps({
-          style: { backgroundColor: "#ffcc00", color: "#373038" },
+          style: toasterStyles.incorrect,
         });
-        setToasterState({
-          open: true,
-          Transition: Slide,
-        });
+        setToasterState(true);
         return;
       } else {
         setToasterText(`All out of tries. The answer was: ${riddle.answer}`);
         setToasterContentProps({
-          style: { backgroundColor: "#ffcc00", color: "#373038" },
+          style: toasterStyles.outOfTries,
         });
-        setToasterState({
-          open: true,
-          Transition: Slide,
-        });
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        setToasterState(true);
+        setToasterHideawayLength(4000);
         setLoading(!loading);
-
         return;
       }
     }
 
     setToasterText("Correct! Take a candy");
     setToasterContentProps({
-      style: correctToasterStyles,
+      style: toasterStyles.correct,
     });
-    setToasterState({
-      open: true,
-      Transition: Slide,
-    });
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    setToasterState(true);
     setLoading(!loading);
   };
 
@@ -156,13 +134,12 @@ const RiddleGame = () => {
       </Box>
 
       <Snackbar
-        transitionDuration={400}
+        transitionDuration={500}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        open={toasterState.open}
-        onClose={handleClose}
-        TransitionComponent={toasterState.Transition}
-        key={toasterState.Transition.name}
-        autoHideDuration={1200}
+        open={toasterState}
+        onClose={handleToasterClose}
+        TransitionComponent={Slide}
+        autoHideDuration={toasterHideawayLength}
         message={
           <Typography variant="body1">
             <CandyIcon />
