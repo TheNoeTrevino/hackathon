@@ -75,7 +75,7 @@ const riddleBoxStyles = {
 };
 
 const riddleAnswerRowsStyles = {
-  mt: "rem",
+  mt: "5rem",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
