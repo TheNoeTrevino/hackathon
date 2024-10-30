@@ -6,3 +6,5 @@ frontend/.vite/
 frontend/.vite
 node_modules/
 frontend/.vite/deps
+node_modules/
+.netlify
