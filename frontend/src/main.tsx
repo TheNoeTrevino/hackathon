@@ -4,8 +4,6 @@ import App from "./App.tsx";
 import "bootstrap/dist/css/bootstrap.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
-import Profile from "./pages/users/Profile";
-import Dashboard from "./pages/dashboard/Dashboard.tsx";
 import RiddleGame from "./pages/riddle-game/RiddleGame.tsx";
 
 const router = createBrowserRouter([
@@ -21,14 +19,6 @@ const router = createBrowserRouter([
       {
         path: "/riddle-game",
         element: <RiddleGame />,
-      },
-      {
-        path: "/profile",
-        element: <Profile />,
-      },
-      {
-        path: "/dashboard",
-        element: <Dashboard />,
       },
     ],
   },
