@@ -1,6 +1,6 @@
 # The Candy Vault
 
-https://github.com/user-attachments/assets/526648fe-5c9b-4630-aeea-9302300a0321
+
 
 Terminal 1:
 `cd frontend`
