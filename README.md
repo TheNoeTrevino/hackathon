@@ -1,9 +1,13 @@
 # The Candy Vault
 
+https://github.com/user-attachments/assets/526648fe-5c9b-4630-aeea-9302300a0321
 
-Uploading ScreenRecording_10-30-2024 12-37-29_1.MP4…
+Terminal 1:
+`cd frontend`
 
+`npm install`
 
+Terminal 2:
 
 `cd backend`
 
